@@ -25,7 +25,7 @@ release_date_precision = []
 
 
 for i in range(0,1000,50):
-    track_results = sp.search(q='year:2022', type='track', limit=50,offset=i)
+    track_results = sp.search(q='year:2023', type='track', limit=50,offset=i)
     for i, j in enumerate(track_results['tracks']['items']):
         artist_name.append(j['artists'][0]['name'])
         track_name.append(j['name'])
