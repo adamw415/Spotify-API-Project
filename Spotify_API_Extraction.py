@@ -55,6 +55,7 @@ df_popularity['popular_ind'] = np.where((df_popularity['popularity'] >= 80),1,0)
 
 #dudup
 df_tracks.drop_duplicates(inplace=True)
+df_popularity.drop_duplicates(inplace=True)
 
 #add bucket and indicator columns for analysis
 df_tracks['duration_category'] = np.select([(df_tracks.duration_seconds < 150),(df_tracks.duration_seconds >= 150) & (df_tracks.duration_seconds <= 240), \
