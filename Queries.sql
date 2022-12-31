@@ -7,7 +7,6 @@ left join `lithe-optics-373318.SPOTIFY_API.POPULARITY` p
 on t.track_id = p.track_id
 group by 1;
 
-
 --the vast majority of releases are on Friday
 select 
   CASE 
