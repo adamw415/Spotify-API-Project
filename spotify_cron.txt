@@ -1,1 +1,1 @@
-0 0 * * * python3  /Users/adamweisberg/Documents/spotify_extraction.py
+0 0 * * * python3  /Users/adamweisberg/Documents/spotify_api_extraction.py
