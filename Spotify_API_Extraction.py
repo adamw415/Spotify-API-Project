@@ -23,8 +23,6 @@ release_date = []
 duration = []
 release_date_precision = []
 
-cur_year = date.today().year
-search_year = 'q=\'year:' + str(cur_year) +'\'' #CAN THIS BE USED?
 
 #extract data from Spotify API
 for i in range(0,1000,50):
