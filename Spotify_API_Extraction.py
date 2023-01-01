@@ -6,7 +6,7 @@ import numpy as np
 from datetime import date
 from datetime import timedelta
 
-#Authentication - without user
+#Authentication
 cid = '____'
 secret = '____'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
