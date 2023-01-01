@@ -74,6 +74,3 @@ df_tracks.loc[:,['track_id','track_name','artist_name','duration_seconds','durat
 #load tables into BigQuery
 df_tracks.to_gbq(destination_table = 'SPOTIFY_API.TRACKS', project_id='lithe-optics-373318',if_exists='append')
 df_popularity.to_gbq(destination_table = 'SPOTIFY_API.POPULARITY', project_id='lithe-optics-373318',if_exists='replace')
-
-
-
