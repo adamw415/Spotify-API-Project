@@ -39,7 +39,7 @@ for i in range(0,1000,50):
         duration.append(j['duration_ms'])
 
 
-#create tracks df
+#create df tracks
 df_tracks = pd.DataFrame({'artist_name':artist_name,'track_name':track_name, 'track_id':track_id,\
     'duration':duration, 'release_date':release_date, 'release_date_precision':release_date_precision})
 
@@ -48,30 +48,34 @@ df_popularity = pd.DataFrame({'track_id':track_id, 'popularity':popularity})
 df_popularity['popular_ind'] = np.where((df_popularity['popularity'] >= 80),1,0)
 
 
-##Transformations##
 
+##Transformations##
 
 df_tracks['duration_seconds'] = df_tracks['duration']/1000
 df_tracks['duration_seconds'] = [round(x) for x in df_tracks['duration_seconds']]
+df_tracks.drop('duration', axis = 1, inplace = True)
+
+#dudup
+df_tracks.drop_duplicates(inplace=True)
+df_popularity.drop_duplicates(inplace=True)
 
 #filter for release dates from yesterday to append to existing table
 df_tracks = df_tracks[df_tracks['release_date'] == str(date.today() - timedelta(days = 1))]
 
-#dudup
-df_tracks.drop_duplicates(inplace=True)
-df_tracks.drop_duplicates(inplace=True)
-
 #add bucket and indicator columns for analysis
 df_tracks['duration_category'] = np.select([(df_tracks.duration_seconds < 150),(df_tracks.duration_seconds >= 150) & (df_tracks.duration_seconds <= 240), \
     (df_tracks.duration_seconds> 240)], ['short', 'medium','long'])
-#df_tracks['popular_ind'] = np.where((df_tracks['popularity'] >= 80),'1','0')
 
 #reorder columns
 df_tracks.loc[:,['track_id','track_name','artist_name','duration_seconds','duration_category','release_date','release_date_precision']] 
 
 
 
-#load dfs into BigQuery
+##LOAD##
+
+#load tables into BigQuery
 df_tracks.to_gbq(destination_table = 'SPOTIFY_API.TRACKS', project_id='lithe-optics-373318',if_exists='append')
 df_popularity.to_gbq(destination_table = 'SPOTIFY_API.POPULARITY', project_id='lithe-optics-373318',if_exists='replace')
+
+
 
