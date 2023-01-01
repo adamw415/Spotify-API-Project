@@ -7,9 +7,9 @@ from datetime import date
 from datetime import timedelta
 
 #Authentication
-cid = '____'
+client_id = '____'
 secret = '____'
-client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 
