@@ -8,6 +8,11 @@ on t.track_id = p.track_id
 group by 1;
 
 --the vast majority of releases are on Friday
+with tracks as(
+select *, extract(DAYOFWEEK from cast(release_date as date)) as day_of_week 
+from `lithe-optics-373318.SPOTIFY_API.TRACKS`
+)
+
 select 
   CASE 
     WHEN day_of_week = 1 THEN 'Sunday'
@@ -20,5 +25,5 @@ select
   END as day_of_week
   ,count(t.track_id) as release_cnt
   ,round(count(t.track_id)/(select count(track_id) from `lithe-optics-373318.SPOTIFY_API.TRACKS`),2) * 100 || '%' as release_percent_by_day_of_week
-from (select *, extract(DAYOFWEEK from cast(release_date as date)) as day_of_week from `lithe-optics-373318.SPOTIFY_API.TRACKS`) t
+from tracks t
 group by 1;
