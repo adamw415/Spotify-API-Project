@@ -1,7 +1,6 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd
-#import sqlite3
 from pathlib import Path
 import numpy as np
 from datetime import date
