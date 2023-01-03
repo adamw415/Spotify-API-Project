@@ -23,6 +23,7 @@ release_date = []
 duration = []
 release_date_precision = []
 
+# create search_year function to pass into Spotify search function so year updates dynamically
 cur_year = date.today().year
 search_year = '\'year:' + str(cur_year) +'\''
 
