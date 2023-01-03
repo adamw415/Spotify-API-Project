@@ -14,7 +14,7 @@ sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 
 
-# create empty lists where the results are going to be stored
+#create empty lists where the results are going to be stored
 artist_name = []
 track_name = []
 popularity = []
@@ -23,7 +23,7 @@ release_date = []
 duration = []
 release_date_precision = []
 
-# create search_year function to pass into Spotify search function so year updates dynamically
+#create search_year function to pass into Spotify search function so year updates dynamically
 cur_year = date.today().year
 search_year = '\'year:' + str(cur_year) +'\''
 
