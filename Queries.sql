@@ -9,8 +9,8 @@ group by 1;
 
 --the vast majority of releases are on Friday
 with tracks as(
-select *, extract(DAYOFWEEK from cast(release_date as date)) as day_of_week 
-from `lithe-optics-373318.SPOTIFY_API.TRACKS`
+  select *, extract(DAYOFWEEK from cast(release_date as date)) as day_of_week 
+  from `lithe-optics-373318.SPOTIFY_API.TRACKS`
 )
 
 select 
